@@ -1,0 +1,33 @@
+//SPDX-License-Identifier: GPL-3.0 
+
+pragma solidity >=0.5.0 <0.9.0; 
+
+contract Globalvariable{
+    address public owner;
+    uint public sentvalue;
+    constructor(){
+        owner = msg.sender ;
+    }
+    
+    function changeowner() public {
+        owner = msg.sender;
+    }
+    
+    function sendEther() public payable{
+        sentvalue = msg.value;
+    }
+    
+    function getBalance() public view returns(uint){
+        return address(this).balance;
+    }
+    
+    function HowMuchgas() public view returns(uint){
+        uint start = gasleft();
+        uint j=1;
+        for(uint i=1;i<20;i++){
+            j*=i;
+        }
+        uint end = gasleft();
+        return start-end;
+    }
+}
